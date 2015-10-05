@@ -50,7 +50,7 @@
                                             </label>
                                         </subviews>
                                         <animations/>
-                                        <color key="backgroundColor" red="0.47096414308461243" green="1" blue="0.32155903626566928" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.44716068514077029" green="0.98823529409999999" blue="0.067320288751954449" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="OJ3-mB-epH" firstAttribute="top" secondItem="bI5-zk-mL2" secondAttribute="bottom" id="67f-TD-5Va"/>
                                             <constraint firstItem="bI5-zk-mL2" firstAttribute="width" secondItem="Msh-Au-Jbc" secondAttribute="width" multiplier="0.5" id="Nlz-6O-8W1"/>

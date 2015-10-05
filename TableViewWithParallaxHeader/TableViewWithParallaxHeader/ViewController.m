@@ -85,7 +85,6 @@
         //TABLE
         if (_table.contentOffset.y < _maxNegativeContentOffset) {
             _canvasScrollView.contentOffset = _table.contentOffset;
-            NSLog(@"Entro content: %f", _table.contentOffset.y);
             
             
         }else if(_table.contentOffset.y > _maxNegativeContentOffset && _table.contentSize.height > (_table.frame.size.height + _table.contentOffset.y)){
