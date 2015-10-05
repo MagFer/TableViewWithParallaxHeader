@@ -11,6 +11,6 @@
 @implementation StyleConstants
 
 float const kHeaderMaxHeigth = 220;
-float const kHeaderMinHeigth = 125;
+float const kHeaderMinHeigth = 140;
 
 @end
