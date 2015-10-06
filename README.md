@@ -1,6 +1,6 @@
 # TableViewWithParallaxHeader
 
-TableViewWithParallaxHeader is a viewController template which contains an animatión of a TableViewHeader with bounces and compression.
+TableViewWithParallaxHeader is a viewController template which contains an animation of a TableViewHeader with bounces and compression.
 
 Ready to easy change of the header content.
 
