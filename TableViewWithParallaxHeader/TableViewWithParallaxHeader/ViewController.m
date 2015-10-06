@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ctBottomHeaderView;
 @property (weak, nonatomic) IBOutlet UILabel *headerTitle;
 
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ctBottomMediaView;
 @property (weak, nonatomic) IBOutlet UIScrollView *mediaScrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
@@ -61,11 +60,8 @@
 #pragma mark - Styles
 
 - (void)loadStyles{
-    //[_headerTitle sizeToFit];
-    
     _maxNegativeContentOffset = kHeaderMaxHeigth - kHeaderMinHeigth - (_headerTitle.frame.size.height - 44);
-    
-    _ctHeightTableView.constant = self.view.frame.size.height - (kHeaderMaxHeigth - _maxNegativeContentOffset);
+    _ctHeightTableView.constant = self.view.frame.size.height - (kHeaderMaxHeigth + [UIApplication sharedApplication].statusBarFrame.size.height - _maxNegativeContentOffset);
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -94,7 +90,6 @@
         if (_table.contentOffset.y < 0){
             _ctBottomHeaderView.constant = _table.contentOffset.y;
             _ctBottomMediaView.constant = _table.contentOffset.y*2.0;
-        
         }else{
             _ctBottomHeaderView.constant = _ctBottomMediaView.constant = 0;
         }
@@ -103,16 +98,15 @@
         if (_table.contentOffset.y < _maxNegativeContentOffset) {
             _canvasScrollView.contentOffset = _table.contentOffset;
         }else if(_table.contentOffset.y > _maxNegativeContentOffset && _table.contentSize.height > (_table.frame.size.height + _table.contentOffset.y)){
-            
             _canvasScrollView.contentOffset = CGPointMake(0.0, _maxNegativeContentOffset);
             
         }else if (_table.contentSize.height < (_table.frame.size.height + _table.contentOffset.y)) { //Disable Bottom Bounce
             _table.contentOffset = CGPointMake(0.0, _table.contentSize.height - _table.frame.size.height);
         }
-        
     }
     if (scrollView.tag == 2) { //MediaScrollView
         [self updatePageControl];
+        [scrollView setContentSize:CGSizeMake(self.view.frame.size.width * _pageControl.numberOfPages, _mediaScrollView.frame.size.height)];
     }
 }
 
@@ -125,11 +119,9 @@
     
     for (int p = 0; p < _images.count; p++) {
         CGRect actualFrameInScrollViewCanvas = CGRectMake(self.view.frame.size.width*(float)p, 0.0, self.view.frame.size.width, _mediaScrollView.frame.size.height);
-        
         CGRect actualFrameInScrollViewMediaView = CGRectMake(0.0, 0.0, self.view.bounds.size.width, _mediaScrollView.frame.size.height);
         UIView *view = [[UIView alloc] initWithFrame:actualFrameInScrollViewCanvas];
         view.backgroundColor = [UIColor redColor];
-        
         view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:actualFrameInScrollViewMediaView];
         imageView.backgroundColor = [UIColor purpleColor];
